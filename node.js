@@ -32,7 +32,19 @@ app.get('/',function(req,res){
 });
 
 app.post('/myaction',function(req,res){
-
+  var Data=new User({
+    name: req.body.name,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password
+  });
+  Data.save(function(error){
+    console.log("Your data has been saved");
+    if(error){
+      console.error(error);
+    }
+  })
+  res.send("Hello");
 })
 
 app.listen(3000, function() {
